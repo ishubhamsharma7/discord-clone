@@ -1,8 +1,10 @@
 // hook to control all modals in our app
+
+import { ServerWithMembersWithProfiles } from '@/types';
 import { Server } from '@prisma/client';
 import {create} from 'zustand'
 
-export type ModalType = 'createServer' | 'invite' | 'editServer' ;
+export type ModalType = 'createServer' | 'invite' | 'editServer' | 'members';
 
 interface ModalData {
     server?: Server
