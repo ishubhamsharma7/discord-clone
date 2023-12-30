@@ -25,7 +25,7 @@ const ServerSidebar = async ({serverId}:ServerSidebarProps) => {
                     createdAt:'asc'
                 }
             },
-            memebers:{
+            members:{
                 orderBy:{
                     role:'asc'
                 }
@@ -37,11 +37,11 @@ const ServerSidebar = async ({serverId}:ServerSidebarProps) => {
     const audioChannels = server?.channels.filter((channel)=>channel.type === ChannelType.AUDIO)
     const videoChannels = server?.channels.filter((channel)=>channel.type === ChannelType.VIDEO)
 
-    const members = server?.memebers.filter((member)=> member.profileId !== profile.id)
+    const members = server?.members.filter((member)=> member.profileId !== profile.id)
 
     if(!server) return redirect('/')
 
-    const role = server?.memebers.find((member)=> member.profileId === profile.id)?.role
+    const role = server?.members.find((member)=> member.profileId === profile.id)?.role
 
     return ( 
         <div className="flex flex-col h-full text-primary w-full dark:bg-[#2B2D31] bg-[#F2F3F5]">

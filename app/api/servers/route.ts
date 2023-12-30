@@ -26,7 +26,7 @@ export async function POST(req:Request){
                         }
                     ]
                 },
-                memebers:{
+                members:{
                     create:[
                         {
                             profileId:profile.id,
