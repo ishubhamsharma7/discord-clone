@@ -7,6 +7,7 @@ import { Plus } from 'lucide-react';
 import { Input } from '../ui/input';
 import qs from 'query-string';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 interface ChatInputProps {
     apiUrl: string;
@@ -20,6 +21,7 @@ const formSchema = z.object({
 })
 
 const ChatInput = ({apiUrl,query,name,type}:ChatInputProps) => {
+    const router = useRouter()
 
     const form = useForm<z.infer<typeof formSchema>>({
         defaultValues:{
@@ -38,6 +40,8 @@ const ChatInput = ({apiUrl,query,name,type}:ChatInputProps) => {
             })
 
             await axios.post(url,values);
+            form.reset()
+            router.refresh();
        } catch (error) {
         console.log("error in chat input",error)
        }
