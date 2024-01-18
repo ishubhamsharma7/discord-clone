@@ -9,6 +9,7 @@ import qs from 'query-string';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/hooks/use-modal-store';
+import EmojiPicker from '../emoji-picker';
 
 interface ChatInputProps {
     apiUrl: string;
@@ -75,11 +76,11 @@ const ChatInput = ({apiUrl,query,name,type}:ChatInputProps) => {
                         placeholder={`Message ${type === "conversation" ? name : "#" + name}`}
                         {...field}
                       />
-                      {/* <div className="absolute top-7 right-8">
+                      <div className="absolute top-7 right-8">
                         <EmojiPicker
                           onChange={(emoji: string) => field.onChange(`${field.value} ${emoji}`)}
                         />
-                      </div> */}
+                      </div>
                     </div>
                   </FormControl>
                 </FormItem>
