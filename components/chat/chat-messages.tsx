@@ -7,6 +7,7 @@ import { useChatQuery } from "@/hooks/use-chat-query";
 import { Loader2, ServerCrash } from "lucide-react";
 import { Fragment } from "react";
 import ChatItem from "./chat-item";
+import { useChatSocket } from "@/hooks/use-chat-socket";
 
 interface ChatMessagesProps { 
     name:string;
@@ -30,10 +31,15 @@ type MessageWithMemberWithProfile = Message & {
 
 const ChatMessages = ({name,member,chatId,apiUrl,socketUrl,socketQuery,paramKey,paramValue,type}:ChatMessagesProps) => {
 
-    const queryKey = `chat:${chatId}`
+    const queryKey = `chat:${chatId}`;
+    const addKey = `chat:${chatId}:messages`;
+    const updateKey = `chat:${chatId}:messages:update`;
 
     const {data,fetchNextPage,hasNextPage,isFetchingNextPage,status} = useChatQuery({
         queryKey, apiUrl,paramKey,paramValue
+    })
+    useChatSocket({
+        queryKey,addKey,updateKey
     })
 
     if(status === "pending"){
